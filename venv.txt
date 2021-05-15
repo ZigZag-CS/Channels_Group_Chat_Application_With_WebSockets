@@ -1,0 +1,2 @@
+python 392
+django 323
