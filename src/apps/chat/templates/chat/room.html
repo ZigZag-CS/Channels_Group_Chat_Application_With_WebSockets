@@ -44,5 +44,37 @@
 </div>
 
 
+
 </body>
 </html>
+
+<script type="text/javascript">
+
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/{{room_no}}/');
+
+    document.querySelector('#sendbutton').onClick = function (e) {
+        const message = document.querySelector('#messageinputfield').value;
+        chatSocket.send(JSON.stringify({'message': '{{name}} : ' + message}));
+        document.querySelector('#messageinputfield').value = '';
+    }
+
+    document.querySelector('#messageinputfield').onkeyup = function (e) {
+        if(e.keyCode === 13){
+            document.querySelector('#sendbutton').click();
+        }
+    }
+
+    function scrollToBottom() {
+        document.querySelector('#messagescontainer').scrollTo({
+            top: document.querySelector('#messagescontainer').scrollHeight,
+            behaviour: 'smooth'
+        });
+    }
+
+    chatSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">' + data.message + '</div>' + '<br><br>';
+        scrollToBottom();
+    }
+
+</script>
