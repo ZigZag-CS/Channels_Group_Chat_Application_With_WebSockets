@@ -31,7 +31,6 @@
     <div id="messagescontainer"
          style="overflow-y: auto; width: 40vw; height: 80vh; position: relative;"
          class="container">
-
     </div>
 
     <div style="position: absolute; bottom: 40px; width: 100vw;" class="d-flex justify-content-center align-items-center">
@@ -39,27 +38,23 @@
         <input id="messageinputfield" class="form-control" style="text-align: center; width: 45vw;" type="text" name="">
 
         <input id="sendbutton" class="btn btn-primary" value="Send message" type="submit" name="">
+
     </div>
 
 </div>
 
-
-
-</body>
-</html>
-
 <script type="text/javascript">
 
-    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/{{room_no}}/');
+    const chatSocket = new WebSocket('ws://'+window.location.host+'/ws/chat/{{room_no}}/');
 
     document.querySelector('#sendbutton').onClick = function (e) {
         const message = document.querySelector('#messageinputfield').value;
-        chatSocket.send(JSON.stringify({'message': '{{name}} : ' + message}));
+        chatSocket.send(JSON.stringify({'message': '{{name}} : '+message}));
         document.querySelector('#messageinputfield').value = '';
     }
 
     document.querySelector('#messageinputfield').onkeyup = function (e) {
-        if(e.keyCode === 13){
+        if(e.keyCode == 13){
             document.querySelector('#sendbutton').click();
         }
     }
@@ -73,8 +68,12 @@
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">' + data.message + '</div>' + '<br><br>';
+        document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">'+data.message+'</div>'+'<br><br>';
         scrollToBottom();
     }
 
 </script>
+
+</body>
+</html>
+

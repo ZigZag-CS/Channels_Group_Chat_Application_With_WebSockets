@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+'apps.chat.apps.ChatConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'channels',
 
     # my apps
-    'apps.chat.apps.ChatConfig',
+    # 'apps.chat.apps.ChatConfig',
 
 ]
 

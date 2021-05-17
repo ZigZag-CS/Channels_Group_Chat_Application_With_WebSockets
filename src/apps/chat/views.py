@@ -11,7 +11,7 @@ def homepageview(request):
 
 def roomview(request):
 
-    room_no = request.POST['room_nbr']
+    room_no = request.POST['room_no']
     name = request.POST['name']
 
     context = {

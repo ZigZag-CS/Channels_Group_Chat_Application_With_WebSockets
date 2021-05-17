@@ -19,8 +19,10 @@
 <div style="height: 80vh" class="d-flex justify-content-center align-items-center">
 
         <form method="post" action="{% url 'chat:room_page' %}">
+
                 {% csrf_token %}
-                <input class="form-control" type="text" placeholder="room number please" name="room_nbr">
+
+                <input class="form-control" type="text" placeholder="room number please" name="room_no">
                 <input style="margin-top: 5px;" class="form-control" type="text" placeholder="name please" name="name">
 
                 <input style="margin-top: 5px;" class="btn btn-primary" value="Enter room" type="submit" name="name">
