@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+          crossorigin="anonymous">
 </head>
 <body>
 
 
 <br />
 
-<div style="height: 100vh" class="d-flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center">
     <h1>{{ title }}</h1>
-<br>
-<form method="post" action="{% url 'chat:room_page' %}">
+</div>
+<div style="height: 80vh" class="d-flex justify-content-center align-items-center">
 
-    <input class="form-control" type="text" placeholder="room number please" name="room_nbr">
-    <input class="form-control" type="text" placeholder="name please" name="name">
+        <form method="post" action="{% url 'chat:room_page' %}">
+                {% csrf_token %}
+                <input class="form-control" type="text" placeholder="room number please" name="room_nbr">
+                <input style="margin-top: 5px;" class="form-control" type="text" placeholder="name please" name="name">
 
-    <input class="btn btn-primary" type="submit" name="name">
+                <input style="margin-top: 5px;" class="btn btn-primary" value="Enter room" type="submit" name="name">
 
-</form>
+        </form>
 </div>
 
 </body>

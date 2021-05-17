@@ -1,13 +1,16 @@
 from django.shortcuts import render
 
 def homepageview(request):
+
     context = {
         "title": "This is homepage !"
     }
+
     return render(request,'chat/index.html', context)
 
 
 def roomview(request):
+
     room_no = request.POST['room_nbr']
     name = request.POST['name']
 
@@ -15,4 +18,5 @@ def roomview(request):
     'room_no': room_no,
     'name': name
     }
+
     return render(request, 'chat/room.html', context)
