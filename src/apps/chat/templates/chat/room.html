@@ -24,16 +24,27 @@
 </head>
 <body>
 
-<div style="position: relative; height: 100vh; width: 100vw;" class="d-flex justify-content-center">
+<div style="position: relative; height: 100vh; width: 100vw;" class="d-flex justify-content-center align-items-center">
 
     <h1 style="top: 0; position: absolute;">Welcome to the room <span style="color: #0079E5">{{ room_no }}</span></h1>
+
+
 
     <div id="messagescontainer"
          style="overflow-y: auto; width: 40vw; height: 80vh; position: relative;"
          class="container">
+
+{#        <div id="lefttext">Hello</div>#}
+{#        <br>#}
+{#        <br>#}
+{#        <div id="lefttext">How r y?</div>#}
+
     </div>
 
-    <div style="position: absolute; bottom: 40px; width: 100vw;" class="d-flex justify-content-center align-items-center">
+
+
+
+    <div style="position: absolute; bottom: 20px; width: 100vw;" class="d-flex justify-content-center align-items-center">
 
         <input id="messageinputfield" class="form-control" style="text-align: center; width: 45vw;" type="text" name="">
 
@@ -43,18 +54,21 @@
 
 </div>
 
+</body>
+</html>
+
 <script type="text/javascript">
 
     const chatSocket = new WebSocket('ws://'+window.location.host+'/ws/chat/{{room_no}}/');
 
-    document.querySelector('#sendbutton').onClick = function (e) {
+    document.querySelector('#sendbutton').onclick = function (e) {
         const message = document.querySelector('#messageinputfield').value;
         chatSocket.send(JSON.stringify({'message': '{{name}} : '+message}));
         document.querySelector('#messageinputfield').value = '';
     }
 
     document.querySelector('#messageinputfield').onkeyup = function (e) {
-        if(e.keyCode == 13){
+        if (e.keyCode == 13) {
             document.querySelector('#sendbutton').click();
         }
     }
@@ -68,12 +82,10 @@
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">'+data.message+'</div>'+'<br><br>';
-        scrollToBottom();
+
+        document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">'+data.message+'</div>' + '<br><br>';
+
     }
 
 </script>
-
-</body>
-</html>
 
