@@ -26,7 +26,7 @@
 
 <div style="position: relative; height: 100vh; width: 100vw;" class="d-flex justify-content-center align-items-center">
 
-    <h1 style="top: 0; position: absolute;">Welcome to the room <span style="color: #0079E5">{{ room_no }}</span></h1>
+    <h1 style="top: 0; position: absolute;">Welcome {{ name }}, you room is:<span style="color: #0079E5">{{ room_no }}</span></h1>
 
 
 
@@ -60,7 +60,7 @@
 
     document.querySelector('#sendbutton').onclick = function (e) {
         const message = document.querySelector('#messageinputfield').value;
-        chatSocket.send(JSON.stringify({'message': '{{name}} : '+message}));
+        chatSocket.send(JSON.stringify({'message': '{{name}} => '+message}));
         document.querySelector('#messageinputfield').value = '';
     }
 
@@ -79,10 +79,9 @@
 
     chatSocket.onmessage = function (e) {
 
-
         const data = JSON.parse(e.data);
         document.querySelector('#messagescontainer').innerHTML += '<div id="lefttext">'+data.message+'</div>' + '<br><br>';
-
+        scrollToBottom();
     }
 
 </script>

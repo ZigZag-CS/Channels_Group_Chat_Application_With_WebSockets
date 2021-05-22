@@ -15,14 +15,14 @@ class ChatConsumer(WebsocketConsumer):
         self.accept()
 
 
-    def disconnect(self, message):
+    def disconnect(self):
 
         print("def disconnect(self, message):")
 
         async_to_sync(self.channel_layer.group_discard)(self.room_group_name, self.channel_name)
 
 
-    def receive(self, *, text_data):
+    def receive(self, text_data):
 
         print("def recieve(self, *, text_data):")
 
