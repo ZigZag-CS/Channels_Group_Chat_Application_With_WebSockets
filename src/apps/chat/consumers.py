@@ -66,7 +66,7 @@ class ChatConsumerSync(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
 
-        async_to_sync(ChatModel(room_no=self.room_name, message=message).save)()
+        ChatModel(room_no=self.room_name, message=message).save()
 
         async_to_sync(self.channel_layer.group_send)(self.room_group_name, {'message': message,'type': 'send_back' })
 
