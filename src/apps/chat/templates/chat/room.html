@@ -34,10 +34,13 @@
          style="overflow-y: auto; width: 40vw; height: 80vh; position: relative;"
          class="container">
 
-{#        <div id="lefttext">Hello</div>#}
-{#        <br>#}
-{#        <br>#}
-{#        <div id="lefttext">How r y?</div>#}
+        {% for msg in messages %}
+
+            <div id="lefttext">{{ msg }}</div>
+            <br><br>
+
+        {% endfor %}
+
 
     </div>
 
